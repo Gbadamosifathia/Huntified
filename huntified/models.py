@@ -9,13 +9,15 @@ class Country(models.Model):
     currency_symbol = models.CharField(max_length=5)
     dialing_code = models.CharField(max_length=5)
     is_active = models.BooleanField(default=True)   
+    def __str__(self):
+        return self.name
 
 class CustomUser(AbstractUser):
     role = models.CharField(max_length=20, choices=[
         ('LANDLORD', 'LANDLORD'),
         ('HUNTER', 'HUNTER')
     ])
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null= True, blank=True)
     phone_number = models.CharField(max_length=20)
    
 class Propertylisting(models.Model):
@@ -39,4 +41,5 @@ class Propertylisting(models.Model):
 
 class Property_image(models.Model):
     property = models.ForeignKey(Propertylisting, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='property_images/')
+    image_url = models.URLField(max_length=500)
+    uploaded_at = models.DateTimeField(auto_now_add=True)

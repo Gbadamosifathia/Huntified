@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased flex min-h-screen">
+
+<aside class="w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col justify-between p-6 shrink-0">
+    <div class="space-y-8">
+        <div>
+            <a href="index.html" class="block">
+                <img src="image/huntified logo.png" alt="Huntified Logo" class="h-8 w-auto object-contain" />
+            </a>
+        </div>
+        <div>
+            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Property Management</div>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-emerald-600 bg-emerald-50 rounded-xl">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Overview
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-all">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i> Inspections
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-all">
+                    <i data-lucide="vault" class="w-5 h-5"></i> Escrow Vault
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-all">
+                    <i data-lucide="bookmark" class="w-5 h-5"></i> Saved Homes
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-all">
+                    <i data-lucide="list-plus" class="w-5 h-5"></i> Past Listing
+                </a>
+            </nav>
+        </div>
+    </div>
+    <div class="bg-indigo-50/50 border border-indigo-100 p-4 rounded-2xl">
+        <div class="flex items-center gap-2 text-indigo-900 font-semibold text-xs mb-1">
+            <i data-lucide="shield-check" class="w-4 h-4 text-indigo-600"></i> ESCROW ACTIVE
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">Funds locked in secure custodial account until inspection sign-off.</p>
+    </div>
+</aside>
+
+    <div class="flex-1 flex flex-col min-w-0">
+        <header class="bg-white border-b border-slate-200 h-20 px-8 flex items-center justify-between sticky top-0 z-30">
+            <div class="flex items-center gap-4">
+                <span class="text-sm font-semibold text-slate-500">Workspace Dashboard</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+                <button class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                </button>
+                <a href="signup.html" class="hidden sm:flex items-center gap-2 text-xs font-semibold bg-slate-900 text-white px-5 py-2.5 rounded-xl hover:bg-slate-800 transition-all shadow-sm">
+                    Post Property
+                </a>
+               <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
+    <img src="image/Container.png" alt="User Profile" class="w-10 h-10 rounded-full object-cover border border-slate-200 shadow-sm" />
+     <span class="text-sm font-medium text-slate-900">Tunde A</span>
+  </div>
+        </header>
+
+        <main class="p-8 space-y-8 flex-1 overflow-y-auto">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-emerald-600 mb-1">Verified Portfolio Manager • ID-8947-NO-8894</div>
+                    <h2 class="text-2xl font-bold text-slate-900">Good morning, Engr. Babatunde Alabi 👋</h2>
+                    <p class="text-sm text-slate-500 mt-1">Portfolio Status: Lagos & Abuja Residential • <span class="font-semibold text-slate-800">4 Properties Managed</span> • <span class="text-emerald-600 font-semibold">100% Deed-Verified</span></p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="flex items-center gap-2 px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all shadow-sm">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download Escrow Statements
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition-all shadow-sm">
+                        <i data-lucide="plus" class="w-4 h-4"></i> + Add New Property
+                    </button>
+                </div>
+            </div>
+               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-slate-400 uppercase">Total Properties</span>
+                        <i data-lucide="building-2" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-slate-900">12</div>
+                    <p class="text-xs text-emerald-600 font-medium mt-1">+2 this quarter <span class="text-slate-400 font-normal">Lagos (7) • Abuja (5)</span></p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-slate-400 uppercase">Physical Audit Cleared</span>
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-slate-900">9 <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md ml-1">75% of Fleet</span></div>
+                    <p class="text-xs text-slate-500 mt-1">100% tenant move-in eligibility</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-slate-400 uppercase">Audit Pipeline</span>
+                        <i data-lucide="clock" class="w-5 h-5 text-amber-500"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-slate-900">2 <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-1 rounded-md ml-1">Audit in Progress</span></div>
+                    <p class="text-xs text-slate-500 mt-1">Maitama Terrace • Ikoyi Loft</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold text-slate-400 uppercase">Inquiries & Tours</span>
+                        <i data-lucide="users" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-slate-900">37 <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md ml-1">14 new this week</span></div>
+                    <p class="text-xs text-slate-500 mt-1">Avg. landlord response: 12 mins</p>
+                </div>
+            </div>
+           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <span class="text-xs font-semibold text-slate-400 uppercase">Demand-Conversion Metrics</span>
+                            <h3 class="text-lg font-bold text-slate-900">Monthly Inquiry & Viewing Volume</h3>
+                        </div>
+                        <div class="bg-slate-100 p-1 rounded-xl flex items-center text-xs font-medium text-slate-600">
+                            <button class="px-3 py-1.5 bg-white rounded-lg shadow-sm">Last 30 Days</button>
+                            <button class="px-3 py-1.5 text-slate-500">Quarterly</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl mb-6 border border-slate-100">
+                        <div>
+                            <span class="text-xs text-slate-400">Listing Impressions</span>
+                            <div class="text-xl font-bold text-slate-900">1,420</div>
+                            <span class="text-xs text-emerald-600 font-medium">+18.4%</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400">Viewing Requests</span>
+                            <div class="text-xl font-bold text-slate-900">84</div>
+                            <span class="text-xs text-emerald-600 font-medium">+6.2%</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400">Signed Escrow Leases</span>
+                            <div class="text-xl font-bold text-slate-900">12 <span class="text-xs text-slate-500 font-normal">100% Verified</span></div>
+                        </div>
+                    </div>
+                    <div class="h-40 flex items-end justify-between gap-2 pt-6 border-b border-slate-100 pb-2">
+                        <div class="w-full bg-emerald-100 h-1/2 rounded-t-md hover:bg-emerald-500 transition-all"></div>
+                        <div class="w-full bg-emerald-300 h-3/4 rounded-t-md hover:bg-emerald-500 transition-all"></div>
+                        <div class="w-full bg-emerald-200 h-2/3 rounded-t-md hover:bg-emerald-500 transition-all"></div>
+                        <div class="w-full bg-emerald-400 h-5/6 rounded-t-md hover:bg-emerald-500 transition-all"></div>
+                        <div class="w-full bg-emerald-500 h-full rounded-t-md"></div>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-slate-400 mt-3">
+                        <span>WEEK 1</span>
+                        <span>WEEK 2</span>
+                        <span>WEEK 3</span>
+                        <span>WEEK 4</span>
+                        <span>WEEK 5</span>
+                        <span class="font-bold text-slate-800">CURRENT WEEK</span>
+                        <span class="font-semibold text-emerald-600">Conversion Rate: 8.4%</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-slate-400 uppercase">Custodial Escrow Vault</span>
+                            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-full font-medium">Standard BTC Custody</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">Rent Collection Reserve</h3>
+                        <div class="text-3xl font-black text-slate-900 my-3">₦24,800,000</div>
+                        <p class="text-xs text-emerald-600 font-medium flex items-center gap-1.5">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i> Next disbursement in 48h after move-in signoff
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 my-6 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="shield" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                <strong class="text-slate-800">Zero Agent Deduction Guarantee:</strong> Saved ₦2.1M this cycle in unauthorized street-agent markups & non-remitted caution deposits.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200 flex justify-between text-xs">
+                            <span class="text-slate-500">Pending Inspection signoffs</span>
+                            <span class="font-bold text-slate-800">2 Units</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Cleared for direct payout</span>
+                            <span class="font-bold text-emerald-600">₦8,300,000</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm">
+                        Manage Bank Routing • Zenith 014****429
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">Managed Properties & Verification Status</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Real-time live vetting, inspection media uploads, and list velocity.</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-semibold">
+                        <button class="px-3.5 py-1.5 bg-slate-900 text-white rounded-lg">All (14)</button>
+                        <button class="px-3.5 py-1.5 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all">Verified (12)</button>
+                        <button class="px-3.5 py-1.5 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all">Action Required (2)</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-xs font-semibold text-slate-400 uppercase bg-slate-50/50">
+                                <th class="p-4 pl-6">Property Details</th>
+                                <th class="p-4">Annual Rent</th>
+                                <th class="p-4">True Move-In Cost</th>
+                                <th class="p-4">Verification Status</th>
+                                <th class="p-4">Traffic & Leads</th>
+                                <th class="p-4 pr-6 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            <tr class="hover:bg-slate-50/50 transition-all">
+                                <td class="p-4 pl-6 flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-slate-200 rounded-xl overflow-hidden shrink-0">
+                                        <img src="image/land dash 1.png"class="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Contemporary 3-Bedroom Admiralty Waterfront</div>
+                                        <div class="text-xs text-slate-500">Admiralty Way, Lekki Phase 1, Lagos</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-semibold text-slate-900">₦4,000,000 <span class="block text-xs text-slate-400 font-normal">/ year</span></td>
+                                <td class="p-4 text-slate-700">₦5,300,000 <span class="block text-xs text-slate-400 font-normal">Includes Caution & SC</span></td>
+                                <td class="p-4">
+                                    <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-lg border border-emerald-200">
+                                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> VERIFIED
+                                    </span>
+                                    <span class="block text-xs text-slate-400 mt-1 font-mono">Audit Code: HNT-L6-051</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="font-bold text-slate-900">652 Views</div>
+                                    <span class="text-xs text-emerald-600 font-medium">14 Active Inquiries</span>
+                                </td>
+                                <td class="p-4 pr-6 text-right space-x-2">
+                                    <button class="px-3 py-1.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold">Manage</button>
+                                    <button class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold">View Chat</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-all">
+                                <td class="p-4 pl-6 flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-slate-200 rounded-xl overflow-hidden shrink-0">
+                                        <img src="image/land dash 2.png" class="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Ikoyi Heights Serviced Executive Suite</div>
+                                        <div class="text-xs text-slate-500">Bourillon St, Ikoyi, Lagos</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-semibold text-slate-900">₦4,900,000 <span class="block text-xs text-slate-400 font-normal">/ year</span></td>
+                                <td class="p-4 text-slate-700">₦6,200,000 <span class="block text-xs text-slate-400 font-normal">All Service Inclusive</span></td>
+                                <td class="p-4">
+                                    <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-lg border border-emerald-200">
+                                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> VERIFIED
+                                    </span>
+                                    <span class="block text-xs text-slate-400 mt-1 font-mono">Audit Code: HNT-M-442</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="font-bold text-slate-900">418 Views</div>
+                                    <span class="text-xs text-emerald-600 font-medium">8 Active Inquiries</span>
+                                </td>
+                                <td class="p-4 pr-6 text-right space-x-2">
+                                    <button class="px-3 py-1.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-semibold">Manage</button>
+                                    <button class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold">View Chat</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-all">
+                                <td class="p-4 pl-6 flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-slate-200 rounded-xl overflow-hidden shrink-0">
+                                        <img src="image/land dash 3.png" class="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Diplomatic 4-Bedroom Terrace</div>
+                                        <div class="text-xs text-slate-500">Maitama District, Abuja FCT</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-semibold text-slate-900">₦6,500,000 <span class="block text-xs text-slate-400 font-normal">/ year</span></td>
+                                <td class="p-4 text-slate-700">₦7,850,000 <span class="block text-xs text-slate-400 font-normal">Bal. Cap / Cashflow</span></td>
+                                <td class="p-4">
+                                    <span class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-lg border border-amber-200">
+                                        <i data-lucide="clock" class="w-3.5 h-3.5"></i> PENDING REVIEW
+                                    </span>
+                                    <span class="block text-xs text-slate-500 mt-1">Step 2: Land Registry Check</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="font-bold text-slate-900">210 Views</div>
+                                    <span class="text-xs text-amber-600 font-medium">Waitlisted 4 Tenants</span>
+                                </td>
+                                <td class="p-4 pr-6 text-right">
+                                    <button class="px-4 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-semibold shadow-sm">Complete Audit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 transition-all">
+                                <td class="p-4 pl-6 flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-slate-200 rounded-xl overflow-hidden shrink-0">
+                                        <img src="image/land dash 4.png" class="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-slate-900">Victoria Island 2-Bed Smart Loft</div>
+                                        <div class="text-xs text-slate-500">Oniru, Victoria Island, Lagos</div>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-semibold text-slate-900">₦3,400,000 <span class="block text-xs text-slate-400 font-normal">/ year</span></td>
+                                <td class="p-4 text-slate-700">₦4,300,000 <span class="block text-xs text-slate-400 font-normal">Deposit + Legal</span></td>
+                                <td class="p-4">
+                                    <span class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-700 text-xs font-semibold px-2.5 py-1 rounded-lg border border-rose-200">
+                                        <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> DOCS RESUBMIT
+                                    </span>
+                                    <span class="block text-xs text-rose-600 mt-1">Survey plan blurry (2 id missing)</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="font-bold text-slate-400">Listing Paused</div>
+                                </td>
+                                <td class="p-4 pr-6 text-right">
+                                    <button class="px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold shadow-sm">Resolve Issue</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="bg-slate-900 text-white p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                <div class="flex items-start gap-4">
+                    <div class="bg-emerald-600 p-3 rounded-xl">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold uppercase text-emerald-400 tracking-wider mb-1">Institutional Protocol • Nigeria & Diaspora Safe</div>
+                        <h4 class="text-lg font-bold">Landlord Protection Guarantee</h4>
+                        <p class="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">Your property is backed by automated tenant KYC, employment verification, and rent advance escrow. Zero risk of property hijacking, unauthorized sub-letting, or delayed disbursement payouts.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 shrink-0">
+                    <button class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-xs font-semibold border border-slate-700 transition-all">Review Coverage Policy</button>
+                    <button class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all shadow-sm">Claim Rent Advance</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    >
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script src="dashboard.js"> </script>
+
+</body>
+</html>

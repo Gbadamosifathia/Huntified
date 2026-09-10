@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/6.1/howto/deployment/asgi/
 
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
-
 from django.core.asgi import get_asgi_application
+django_asgi_app = get_asgi_application()
+
 from channels.routing import ProtocolTypeRouter, URLRouter
 from huntified.middleware import JWTAuthMiddleware
 from huntified.routing import websocket_urlpatterns
@@ -18,7 +19,7 @@ from huntified.routing import websocket_urlpatterns
 
 
 application = ProtocolTypeRouter({
-    'http': get_asgi_application(),
+    "http": django_asgi_app,
     'websocket': JWTAuthMiddleware(
         URLRouter(
             websocket_urlpatterns

@@ -2,8 +2,10 @@ from google import genai
 from decouple import config
 
 def analyze_property_image(image_url):
+    api_key = config("GEMINI_API_KEY")
     # Initialize the client (it automatically reads GEMINI_API_KEY from your .env)
-    client = genai.Client()
+    client = genai.Client(api_key=api_key)
+ 
     
     prompt = (
         "Analyze this real estate listing image. Check for digital alterations, "

@@ -13,6 +13,7 @@ class PropertylistingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Propertylisting
         fields = "__all__"
+        read_only_fields = ['owner', 'country', 'price', 'is_verified']
 
 class SignupSerializers(serializers.ModelSerializer):
     class Meta:

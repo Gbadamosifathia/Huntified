@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from huntified.models import Propertylisting, Property_image, CustomUser, Review
+from huntified.models import Propertylisting, Property_image, CustomUser, Review, Message
 from django.contrib.auth.models import AbstractUser
 
 
@@ -42,4 +42,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ['id','property', 'tenant_username', 'tenant', 'rating', 'comment', 'created_at']
         read_only_fields=['tenant','created_at']
-        
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['id', 'sender', 'recipient', 'property', 'message', 'created_at']

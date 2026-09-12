@@ -4,11 +4,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
 from django.shortcuts import get_object_or_404
-from .serializers import PropertylistingSerializer, SignupSerializers, ReviewSerializer, Property_imageSerializer
-from huntified.models import Propertylisting, Review, Property_image,Country
+from .serializers import PropertylistingSerializer, SignupSerializers, ReviewSerializer, Property_imageSerializer, MessageSerializer
+from huntified.models import Propertylisting, Review, Property_image,Country, Message
 from rest_framework import status
 from huntified.utils import analyze_property_image
-
+from django.db.models import Q
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def logout(request):
@@ -155,3 +155,38 @@ def user_profile_view(request):
         
         return Response({"message": "Profile updated successfully!"}, status=status.HTTP_200_OK)
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def message_history(request, property_id, other_user_id):
+    messages = Message.objects.filter(
+        property_id=property_id
+    ).filter(
+        Q(sender=request.user, recipient_id=other_user_id) |
+        Q(sender_id=other_user_id, recipient=request.user)
+    ).order_by('created_at')
+    serializer = MessageSerializer(messages, many=True)
+    return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def chat_list(request):
+    messages = Message.objects.filter(
+        Q(sender=request.user) | Q(recipient=request.user)
+    ).order_by('-created_at')
+
+    seen = set()
+    conversations = []
+    for msg in messages:
+        other_user = msg.recipient if msg.sender == request.user else msg.sender
+        key = (msg.property_id, other_user.id)
+        if key not in seen:
+            seen.add(key)
+            conversations.append({
+                'property_id': msg.property_id,
+                'other_user_id': other_user.id,
+                'other_user_username': other_user.username,
+                'last_message': msg.message,
+                'last_message_at': msg.created_at
+            })
+    return Response(conversations)

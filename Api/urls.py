@@ -10,4 +10,6 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('get_countries/', views.get_countries, name='get_countries'),
     path('user_profile/', views.user_profile_view, name='user_profile'),
+    path('messages/<int:property_id>/<int:other_user_id>/', views.message_history, name='message_history'),
+    path('chats/', views.chat_list, name='chat_list'),
 ]

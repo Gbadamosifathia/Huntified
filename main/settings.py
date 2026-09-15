@@ -167,4 +167,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 AUTH_USER_MODEL = 'huntified.CustomUser'
-CORS_ALLOWED_ORIGIN = ["https://huntified.vercel.app"]
+CORS_ALLOWED_ORIGINS = ["https://huntified.vercel.app"]

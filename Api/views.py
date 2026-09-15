@@ -119,9 +119,18 @@ def review_list(request):
 @api_view(["GET"])
 def home(request):
     property = Propertylisting.objects.filter(is_available=True, is_verified=True)
+    property_name_param = request.query_params.get('name')
+    location_param = request.query_params.get('location')
+    price_param = request.query_params.get('price')
+    if property_name_param:
+        property = property.filter(name__icontains=property_name_param)
+    if location_param:
+        property = property.filter(location__icontains=location_param)
+    if price_param:
+        property = property.filter(price__lte=price_param)
     serializer = PropertylistingSerializer(property, many=True)
     return Response(serializer.data, status=200)
-
+   
 @api_view(['GET'])
 def get_countries(request):
     # Grab all active countries you added via the admin panel

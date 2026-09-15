@@ -12,4 +12,5 @@ urlpatterns = [
     path('user_profile/', views.user_profile_view, name='user_profile'),
     path('messages/<int:property_id>/<int:other_user_id>/', views.message_history, name='message_history'),
     path('chats/', views.chat_list, name='chat_list'),
+    path('verify_image/', views.verify_property_image, name="verify_image"),
 ]

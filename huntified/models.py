@@ -27,7 +27,7 @@ class Propertylisting(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=200)
     base_rent = models.DecimalField(max_digits=12, decimal_places=2)
-    agent_fee= models.DecimalField(max_digits=12, decimal_places=2)
+    agent_fee= models.DecimalField(max_digits=12, decimal_places=2) 
     legal_fee = models.DecimalField(max_digits=12, decimal_places=2)
     caution_deposit = models.DecimalField(max_digits=12, decimal_places=2) 
     service_charge = models.DecimalField(max_digits=12, decimal_places=2)

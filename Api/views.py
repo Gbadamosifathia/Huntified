@@ -58,23 +58,8 @@ def list_property_create(request):
         return Response(serializer.data)
         
     if request.method == "POST":
-        # 1. Grab the image URLs sent from the frontend
         images_data = request.data.get('images', [])
         
-        if images_data:
-            # Run AI Fraud Check on the first image (or loop through them)
-            is_safe, ai_feedback = analyze_property_image(images_data[0])
-            
-            if not is_safe:
-                return Response(
-                    {
-                        "error": "Listing rejected by AI Fraud Guard.",
-                        "details": ai_feedback
-                    },
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-
-        # 2. Proceed with normal serializer validation and saving if safe
         serializer = PropertylistingSerializer(data=request.data)
         if serializer.is_valid():
             property_instance = serializer.save(owner=request.user, country=request.user.country)
@@ -84,8 +69,41 @@ def list_property_create(request):
                 
             return_serializer = PropertylistingSerializer(property_instance)
             return Response(return_serializer.data, status=201)
-            
         return Response(serializer.errors, status=400)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def verify_property_image(request):
+    # Expects a JSON payload from the frontend like: {"image_url": "https://..."}
+    image_url = request.data.get('image_url')
+    
+    if not image_url:
+        return Response(
+            {"error": "No image URL provided."},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Run your AI fraud guard check using the URL
+    is_safe, ai_feedback = analyze_property_image(image_url)
+    
+    if is_safe:
+        return Response(
+            {
+                "status": "passed",
+                "message": "Verification passed successfully!",
+                "details": ai_feedback
+            },
+            status=status.HTTP_200_OK
+        )
+    else:
+        return Response(
+            {
+                "status": "failed",
+                "message": "Image rejected by AI Fraud Guard.",
+                "details": ai_feedback
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
 @api_view(["GET", "PUT", "DELETE"])
 @permission_classes([IsAuthenticated])
 def property_details(request, pk):

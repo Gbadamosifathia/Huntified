@@ -254,3 +254,13 @@ function syncPropertyCardWishlistStates() {
 function openLandlordMessages() {
     window.location.href = 'message.html';
 }
+const messageLandlordBtn = document.getElementById('message-landlord-btn');
+
+if (messageLandlordBtn) {
+    messageLandlordBtn.addEventListener('click', () => {
+        const propertyId = "HM-99420-LK";
+        const landlordId = "landlord-456";
+        
+        window.location.href = `messages.html?property_id=${propertyId}&other_user_id=${landlordId}`;
+    });
+}

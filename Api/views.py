@@ -217,3 +217,12 @@ def chat_list(request):
                 'last_message_at': msg.created_at
             })
     return Response(conversations)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_properties(request):
+    properties = Propertylisting.objects.filter(owner=request.user)
+    serializer = PropertylistingSerializer(properties, many = True)
+    return Response(serializer.data, status= 200)
+     
+

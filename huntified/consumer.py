@@ -17,6 +17,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.property_id = self.scope['url_route']['kwargs']['property_id']
         self.other_user_id = self.scope['url_route']['kwargs']['other_user_id']
         self.user = self.scope['user']
+        if not self.user.is_authenticated:
+            await self.close()
+            return
         ids = sorted([self.user.id, int(self.other_user_id)])
         self.room_group_name = f"chat_{self.property_id}_{ids[0]}_{ids[1]}"
         await self.channel_layer.group_add(

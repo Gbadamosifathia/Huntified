@@ -38,14 +38,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         message_text = text_data_json['message']
         new_message = await self.save_message(message_text)
-        await self.channel_layer.group_send(
-        self.room_group_name,
-        {
-        'type': 'chat_message',
-        'message': message_text,
-        'sender_id': self.user.id
-        }
-    )
+        try:
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'message': message_text,
+                    'sender_id': self.user.id
+                }
+            )
+        except Exception as e:
+            print(f"Broadcast failed: {e}")
     async def chat_message(self, event):
         await self.send(text_data=json.dumps({
         'message': event['message'],

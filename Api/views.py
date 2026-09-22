@@ -200,8 +200,7 @@ def message_history(request, property_id, other_user_id):
 def chat_list(request):
     messages = Message.objects.filter(
         Q(sender=request.user) | Q(recipient=request.user)
-    ).order_by('-created_at')
-
+    ).select_related('property', 'sender', 'recipient').order_by('-created_at')
     seen = set()
     conversations = []
     for msg in messages:
@@ -211,6 +210,7 @@ def chat_list(request):
             seen.add(key)
             conversations.append({
                 'property_id': msg.property_id,
+                'property_name': msg.property.name,  # <-- Added this line
                 'other_user_id': other_user.id,
                 'other_user_username': other_user.username,
                 'last_message': msg.message,

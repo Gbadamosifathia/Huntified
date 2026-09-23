@@ -6,12 +6,16 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 class ChatConsumer(AsyncWebsocketConsumer):         
     @database_sync_to_async
     def save_message(self, text):
-        return Message.objects.create(
-            sender=self.user,
-            recipient_id=self.other_user_id,
-            property_id=self.property_id,
-            message=text
-        )
+        try:
+            return Message.objects.create(
+                sender=self.user,
+                recipient_id=self.other_user_id,
+                property_id=self.property_id,
+                message=text
+            )
+        except Exception as e:
+            print(f"DATABASE SAVE ERROR: {e}")
+            return None
     
     async def connect(self): 
         self.property_id = self.scope['url_route']['kwargs']['property_id']

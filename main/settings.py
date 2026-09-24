@@ -85,6 +85,9 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [config("REDIS_URL")],
+             "connection_kwargs": {
+                "socket_keepalive": True,
+                },
         },
     },
 }

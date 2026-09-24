@@ -40,21 +40,34 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message_text = text_data_json['message']
+        message_text = text_data_json.get('message')
+
+        if not message_text:
+            return
+
+        # 1. Save to database first and ensure it succeeded
         new_message = await self.save_message(message_text)
+        if not new_message:
+            print("Error: Message failed to save to the database.")
+            return
+
+        # 2. Broadcast to room group only if save was successful
         try:
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
                     'type': 'chat_message',
-                    'message': message_text,
-                    'sender_id': self.user.id
+                    'message': new_message.message,
+                    'sender_id': self.user.id,
+                    'created_at': str(new_message.created_at) if hasattr(new_message, 'created_at') else None
                 }
             )
         except Exception as e:
             print(f"Broadcast failed: {e}")
+
     async def chat_message(self, event):
         await self.send(text_data=json.dumps({
-        'message': event['message'],
-        'sender_id': event['sender_id']
-    }))
+            'message': event['message'],
+            'sender_id': event['sender_id'],
+            'created_at': event.get('created_at')
+        }))

@@ -85,15 +85,17 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [config("REDIS_URL")],
-            "connection_kwargs": {
-                "socket_keepalive": True,
-                'socket_keepalive_options':{
-                    socket.TCP_KEEPIDLE: 20,
-                    socket.TCP_KEEPINTVL: 10,
-                    socket.TCP_KEEPCNT: 3,
+            "hosts": [
+                {
+                    "address": config("REDIS_URL"),
+                    "socket_keepalive": True,
+                    "socket_keepalive_options": {
+                        socket.TCP_KEEPIDLE: 20,
+                        socket.TCP_KEEPINTVL: 10,
+                        socket.TCP_KEEPCNT: 3,
+                    },
                 }
-            }
+            ],
         },
     },
 }

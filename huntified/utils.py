@@ -18,7 +18,7 @@ def analyze_property_image(image_url):
     "If it does show a property, check for digital alterations, watermarks from other "
     "real estate sites, or signs that it is a generic stock photo. "
     "Return your answer strictly in this format: "
-    "VERDICT: [SAFE or FRAUD] | REASON: [Brief explanation]"
+    "IF VERDICT: [SAFE or FRAUD] | REASON: [Brief explanation]"
 )
     
     try:
@@ -35,7 +35,7 @@ def analyze_property_image(image_url):
         result_text = response.text
         
         # Simple parsing logic for your Django view
-        if "FRAUD" in result_text.upper():
+        if "VERDICT: FRAUD" in result_text.upper():
             return False, result_text
         return True, result_text
 

@@ -28,7 +28,7 @@ def analyze_property_image(image_url):
         mime_type = response.headers.get('content-type', 'image/jpeg')
         # Send the image URL and prompt to Gemini using a multimodal model
         response = client.models.generate_content(
-            model='gemini-2.5-flash',
+            model='gemini-3.8-flash',
             contents=[prompt,types.Part.from_bytes(data=image_bytes, mime_type=mime_type)]
         )
         

@@ -24,7 +24,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if not self.user.is_authenticated:
             await self.close()
             return
-        ids = sorted([self.user.id, int(self.other_user_id)])
+        ids = sorted([self.user.id, (self.other_user_id)])
         self.room_group_name = f"chat_{self.property_id}_{ids[0]}_{ids[1]}"
         await self.channel_layer.group_add(
         self.room_group_name,

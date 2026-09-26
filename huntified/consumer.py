@@ -18,12 +18,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
             return None
     
     async def connect(self): 
-        self.property_id = self.scope['url_route']['kwargs']['property_id']
-        self.other_user_id = self.scope['url_route']['kwargs']['other_user_id']
         self.user = self.scope['user']
         if not self.user.is_authenticated:
             await self.close()
             return
+        self.property_id = int(self.scope['url_route']['kwargs']['property_id'])
+        self.other_user_id = int(self.scope['url_route']['kwargs']['other_user_id'])
         ids = sorted([self.user.id, (self.other_user_id)])
         self.room_group_name = f"chat_{self.property_id}_{ids[0]}_{ids[1]}"
         await self.channel_layer.group_add(

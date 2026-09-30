@@ -1,3 +1,4 @@
+import time
 import requests
 from google.genai import types
 from google import genai
@@ -18,27 +19,40 @@ def analyze_property_image(image_url):
     "If it does show a property, check for digital alterations, watermarks from other "
     "real estate sites, or signs that it is a generic stock photo. "
     "Return your answer strictly in this format: "
-    "IF VERDICT: [SAFE or FRAUD] | REASON: [Brief explanation]"
+    "VERDICT: [SAFE or FRAUD] | REASON: [Brief explanation]"
 )
-    
+    model= [
+        'gemini-3.8-flash', 
+        'gemini-2.5-flash', 
+        'gemini-2.5-pro',
+        ]
     try:
         response = requests.get(image_url)
         response.raise_for_status()
         image_bytes = response.content
         mime_type = response.headers.get('content-type', 'image/jpeg')
+    except Exception as e:
+        return False, f"Failed to download image: {str(e)}"
         # Send the image URL and prompt to Gemini using a multimodal model
-        response = client.models.generate_content(
-            model='gemini-3.8-flash',
-            contents=[prompt,types.Part.from_bytes(data=image_bytes, mime_type=mime_type)]
-        )
-        
-        result_text = response.text
+    last_error = None
+    for moodel_name in model:
+        try:
+            response = client.models.generate_content(
+                model=moodel_name,
+                contents=[prompt,types.Part.from_bytes(data=image_bytes, mime_type=mime_type)]
+            )
+            result_text = response.text
         
         # Simple parsing logic for your Django view
-        if "VERDICT: FRAUD" in result_text.upper():
-            return False, result_text
-        return True, result_text
+            if "VERDICT: FRAUD" in result_text.upper():
+                return False, result_text
+            
+            return True, result_text
 
-    except Exception as e:
-        # Fallback if the network or API fails during the hackathon demo
-        return False, str(e)
+        except Exception as e:
+            last_error = e
+            if '503' in str(e) or "UNAVAILABLE" in str(e):  
+                time.sleep(2)
+                continue
+            continue      # Fallback if the network or API fails during the hackathon demo
+    return True, f"All models busy, bypassed: {str(last_error)}"

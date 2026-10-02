@@ -31,13 +31,13 @@ def signup(request):
 @permission_classes([IsAuthenticated])
 def search_filter(request):
     properties = Propertylisting.objects.filter(country=request.user.country)
-    property_name_param = request.query_params.get('name')
+    property_type_param = request.query_params.get('property_type')
     location_param = request.query_params.get('location')
     price_param = request.query_params.get('price')
     available_param = request.query_params.get('is_available')
     verified_param = request.query_params.get('is_verified')
-    if property_name_param:
-        properties = properties.filter(name__icontains=property_name_param)
+    if property_type_param:
+        properties = properties.filter(name__icontains=property_type_param)
     if location_param:
         properties = properties.filter(location__icontains=location_param)
     if price_param:
@@ -137,11 +137,11 @@ def review_list(request):
 @api_view(["GET"])
 def home(request):
     property = Propertylisting.objects.filter(is_available=True, is_verified=True)
-    property_name_param = request.query_params.get('name')
+    property_type_param = request.query_params.get('type')
     location_param = request.query_params.get('location')
     price_param = request.query_params.get('price')
-    if property_name_param:
-        property = property.filter(name__icontains=property_name_param)
+    if property_type_param:
+        property = property.filter(property_type__icontains=property_type_param)
     if location_param:
         property = property.filter(location__icontains=location_param)
     if price_param:

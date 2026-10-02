@@ -48,7 +48,7 @@ class Property_image(models.Model):
 class Review(models.Model):
     property = models.ForeignKey(Propertylisting, on_delete=models.CASCADE)
     tenant = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(2)])
+    rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

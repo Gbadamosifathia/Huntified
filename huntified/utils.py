@@ -21,10 +21,9 @@ def analyze_property_image(image_url):
     "Return your answer strictly in this format: "
     "VERDICT: [SAFE or FRAUD] | REASON: [Brief explanation]"
 )
-    model= [
-        'gemini-3.8-flash', 
-        'gemini-2.5-flash', 
-        'gemini-2.5-pro',
+    model= [ 
+        'gemini-3.1-flash-lite', 
+        'gemini-3.1-pro-preview',
         ]
     try:
         response = requests.get(image_url)
@@ -55,4 +54,4 @@ def analyze_property_image(image_url):
                 time.sleep(2)
                 continue
             continue      # Fallback if the network or API fails during the hackathon demo
-    return True, f"All models busy, bypassed: {str(last_error)}"
+    return False, f"Verification unavailable, all models failed: {str(last_error)}"
